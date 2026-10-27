@@ -1,0 +1,4 @@
+-- La tabla equipos se creará desde NestJS usando TypeORM.
+CREATE DATABASE IF NOT EXISTS inventario_tecnologico
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
