@@ -125,6 +125,8 @@ Se utilizó Codex de OpenAI solo como apoyo en la revisión de errores y la inst
 
 ## Comprobaciones realizadas
 
+- Se utilizó Postman para comprobar el funcionamiento de la API: listar y consultar equipos con GET, registrar con POST, actualizar con PATCH y eliminar con DELETE. Se revisaron las respuestas del backend y los datos enviados en formato JSON.
+
 - Frontend y backend compilan correctamente.
 - Se probó la interfaz en Safari con la API y MySQL: registro, detalle, edición, búsqueda con y sin coincidencias, confirmación de eliminación y cancelación.
 - Se probó la eliminación mediante el servicio `fetch` del frontend y se retiró el registro temporal.
@@ -132,7 +134,7 @@ Se utilizó Codex de OpenAI solo como apoyo en la revisión de errores y la inst
 - La prueba inicial de NestJS pasa.
 - Las pruebas HTTP pasan con MySQL conectado (`npm run test:e2e` en `backend`): crear, listar, consultar, editar y eliminar; errores 400 y 404; fechas inválidas, campos extra y campos obligatorios nulos. Las pruebas limpian el equipo temporal que crean.
 - Se guardó un equipo temporal con el repositorio de TypeORM, se cerró NestJS y se volvió a iniciar. El equipo seguía guardado en MySQL. Luego se eliminó ese registro de prueba.
-- La tabla contiene los campos de la evaluación. Los datos de ejemplo se agregarán en otro avance.
+- La tabla contiene los campos de la evaluación y cuenta con 5 equipos de ejemplo registrados en MySQL.
 
 Se actualizaron las dependencias compatibles de NestJS y Multer con `npm audit fix`. La auditoría del backend reporta 0 vulnerabilidades en esta revisión.
 
