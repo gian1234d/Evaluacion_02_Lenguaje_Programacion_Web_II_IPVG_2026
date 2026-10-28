@@ -125,21 +125,10 @@ Se utilizó Codex de OpenAI solo como apoyo en la revisión de errores y la inst
 
 ## Comprobaciones realizadas
 
-- Se utilizó Postman para comprobar el funcionamiento de la API: listar y consultar equipos con GET, registrar con POST, actualizar con PATCH y eliminar con DELETE. Se revisaron las respuestas del backend y los datos enviados en formato JSON.
-
-- Frontend y backend compilan correctamente.
-- Se probó la interfaz en Safari con la API y MySQL: registro, detalle, edición, búsqueda con y sin coincidencias, confirmación de eliminación y cancelación.
-- Se probó la eliminación mediante el servicio `fetch` del frontend y se retiró el registro temporal.
-- Al detener el backend, la interfaz muestra un mensaje de conexión comprensible.
-- La prueba inicial de NestJS pasa.
-- Las pruebas HTTP pasan con MySQL conectado (`npm run test:e2e` en `backend`): crear, listar, consultar, editar y eliminar; errores 400 y 404; fechas inválidas, campos extra y campos obligatorios nulos. Las pruebas limpian el equipo temporal que crean.
-- Se guardó un equipo temporal con el repositorio de TypeORM, se cerró NestJS y se volvió a iniciar. El equipo seguía guardado en MySQL. Luego se eliminó ese registro de prueba.
-- La tabla contiene los campos de la evaluación y cuenta con 5 equipos de ejemplo registrados en MySQL.
-
-Se actualizaron las dependencias compatibles de NestJS y Multer con `npm audit fix`. La auditoría del backend reporta 0 vulnerabilidades en esta revisión.
-
-Referencia de configuración: [documentación de NestJS](https://docs.nestjs.com/techniques/configuration).
-
-Referencia de validaciones: [documentación de NestJS](https://docs.nestjs.com/techniques/validation).
-
-Referencia de formularios: [documentación de Vue](https://vuejs.org/guide/essentials/forms.html).
+- Se utilizó Postman para probar la API: listar y consultar equipos con GET, registrar con POST, editar con PATCH y eliminar con DELETE.
+- Se revisaron las respuestas de la API y el envío de datos en formato JSON.
+- Se comprobó que la API rechaza datos inválidos y responde con 404 cuando un equipo no existe.
+- Se probó el formulario, la búsqueda, la edición y la confirmación de eliminación desde Vue.
+- Se verificó que los datos permanecen guardados en MySQL al reiniciar el backend.
+- Se registraron 5 equipos de ejemplo para revisar el funcionamiento.
+- El frontend y el backend compilan correctamente.
