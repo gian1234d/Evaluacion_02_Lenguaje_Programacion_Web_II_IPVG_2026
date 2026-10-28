@@ -55,7 +55,6 @@ Las variables son:
 - `DB_DATABASE`: nombre de la base, `inventario_tecnologico`.
 - `PORT`: puerto del backend, `3000`.
 
-Al iniciar el backend, TypeORM crea la tabla `equipos` desde `equipo.entity.ts`. Se usa `synchronize: true` solo para este desarrollo local; no se debe usar así en producción.
 
 Abrir una terminal para el backend:
 
@@ -80,14 +79,6 @@ Mantener las dos terminales abiertas y MySQL iniciado. El frontend llama a `http
 
 Para comprobar que compilan, ejecutar `npm run build` dentro de cada carpeta.
 
-## Usar la interfaz
-
-1. Abrir el frontend y presionar **Nuevo equipo**.
-2. Completar los campos y guardar. La fecha se envía como `AAAA-MM-DD`.
-3. Usar **Ver** para consultar el detalle o **Editar** para cambiar los datos.
-4. Escribir en la búsqueda para filtrar por nombre, código, tipo, ubicación o estado.
-5. **Eliminar** solicita confirmación antes de borrar.
-6. Si falla la conexión, comprobar el backend y presionar **Actualizar lista**.
 
 ## API de equipos
 
@@ -99,25 +90,6 @@ Para comprobar que compilan, ejecutar `npm run build` dentro de cada carpeta.
 | PATCH | `/equipos/:id` | Editar un equipo |
 | DELETE | `/equipos/:id` | Eliminar un equipo |
 
-Ejemplo de JSON para crear un equipo:
-
-```json
-{
-  "codigoInventario": "EQ-001",
-  "nombre": "Notebook laboratorio",
-  "tipo": "Notebook",
-  "marca": "Lenovo",
-  "modelo": "ThinkPad",
-  "ubicacion": "Laboratorio 1",
-  "estado": "Disponible",
-  "fechaAdquisicion": "2026-10-28",
-  "observaciones": "Equipo para clases"
-}
-```
-
-`observaciones` es opcional. Para editar con PATCH se envían solo los campos que cambian.
-
-Las solicitudes inválidas responden con 400 y una lista de errores en `message`. Un ID inexistente responde con 404. Solo se permiten los campos declarados en los DTO. CORS permite el frontend en `http://localhost:5173`.
 
 ## Uso de IA
 
@@ -125,10 +97,10 @@ Se utilizó Codex de OpenAI solo como apoyo en la revisión de errores y la inst
 
 ## Comprobaciones realizadas
 
-- Se utilizó Postman para probar la API: listar y consultar equipos con GET, registrar con POST, editar con PATCH y eliminar con DELETE.
-- Se revisaron las respuestas de la API y el envío de datos en formato JSON.
-- Se comprobó que la API rechaza datos inválidos y responde con 404 cuando un equipo no existe.
-- Se probó el formulario, la búsqueda, la edición y la confirmación de eliminación desde Vue.
-- Se verificó que los datos permanecen guardados en MySQL al reiniciar el backend.
-- Se registraron 5 equipos de ejemplo para revisar el funcionamiento.
+- Se utilizó Postman para probar los métodos GET, POST, PATCH y DELETE de la API.
+- Se revisaron las respuestas y el envío de datos en formato JSON.
+- Se comprobó el rechazo de datos inválidos y el error 404 para equipos inexistentes.
+- Se probaron los formularios, la búsqueda y las acciones desde Vue.
+- Se verificó que los datos permanecen guardados al reiniciar el backend.
+- Se registraron 5 equipos de ejemplo.
 - El frontend y el backend compilan correctamente.
