@@ -13,11 +13,14 @@ Aplicación para administrar equipos tecnológicos.
 - MySQL conectado al backend mediante TypeORM y variables de entorno.
 - Entidad `Equipo` y tabla `equipos` creadas.
 
-El CRUD de equipos y las validaciones del backend están listos. La conexión del frontend a la API queda para el siguiente avance.
+Vue ya consume la API de NestJS: permite listar, registrar, consultar, editar, eliminar con confirmación y buscar equipos. Muestra mensajes de carga, éxito y error.
 
 ## Carpetas
 
-- `frontend/src`: pantalla y estilos.
+- `frontend/src/App.vue`: listado, búsqueda y acciones de los equipos.
+- `frontend/src/components/EquipoFormulario.vue`: formulario para registrar y editar.
+- `frontend/src/services/equipos.js`: solicitudes `fetch` a la API.
+- `frontend/src/style.css`: estilos sencillos de la pantalla.
 - `backend/src`: código de la API.
 - `backend/src/equipos`: entidad, módulo, controlador, servicio y DTO de los equipos.
 - `database/crear-base.sql`: instrucción para crear la base de datos.
@@ -71,9 +74,20 @@ npm run dev
 ```
 
 Backend: http://localhost:3000; listado en http://localhost:3000/equipos.
-Frontend: http://localhost:5173 (o el puerto que indique Vite).
+Frontend: http://localhost:5173. Vite usa ese puerto fijo para coincidir con CORS del backend. Si está ocupado, cerrar el proceso que lo esté usando.
+
+Mantener las dos terminales abiertas y MySQL iniciado. El frontend llama a `http://localhost:3000/equipos`; esa dirección está en `frontend/src/services/equipos.js`.
 
 Para comprobar que compilan, ejecutar `npm run build` dentro de cada carpeta.
+
+## Usar la interfaz
+
+1. Abrir el frontend y presionar **Nuevo equipo**.
+2. Completar los campos y guardar. La fecha se envía como `AAAA-MM-DD`.
+3. Usar **Ver** para consultar el detalle o **Editar** para cambiar los datos.
+4. Escribir en la búsqueda para filtrar por nombre, código, tipo, ubicación o estado.
+5. **Eliminar** solicita confirmación antes de borrar.
+6. Si falla la conexión, comprobar el backend y presionar **Actualizar lista**.
 
 ## API de equipos
 
@@ -112,6 +126,9 @@ Se utilizó Codex de OpenAI solo como apoyo en la revisión de errores y la inst
 ## Comprobaciones realizadas
 
 - Frontend y backend compilan correctamente.
+- Se probó la interfaz en Safari con la API y MySQL: registro, detalle, edición, búsqueda con y sin coincidencias, confirmación de eliminación y cancelación.
+- Se probó la eliminación mediante el servicio `fetch` del frontend y se retiró el registro temporal.
+- Al detener el backend, la interfaz muestra un mensaje de conexión comprensible.
 - La prueba inicial de NestJS pasa.
 - Las pruebas HTTP pasan con MySQL conectado (`npm run test:e2e` en `backend`): crear, listar, consultar, editar y eliminar; errores 400 y 404; fechas inválidas, campos extra y campos obligatorios nulos. Las pruebas limpian el equipo temporal que crean.
 - Se guardó un equipo temporal con el repositorio de TypeORM, se cerró NestJS y se volvió a iniciar. El equipo seguía guardado en MySQL. Luego se eliminó ese registro de prueba.
@@ -122,3 +139,5 @@ Se actualizaron las dependencias compatibles de NestJS y Multer con `npm audit f
 Referencia de configuración: [documentación de NestJS](https://docs.nestjs.com/techniques/configuration).
 
 Referencia de validaciones: [documentación de NestJS](https://docs.nestjs.com/techniques/validation).
+
+Referencia de formularios: [documentación de Vue](https://vuejs.org/guide/essentials/forms.html).

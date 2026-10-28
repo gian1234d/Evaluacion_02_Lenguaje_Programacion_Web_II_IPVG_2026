@@ -1,18 +1,33 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  color: #222;
-}
-
-main {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 24px;
-  background: white;
-  border-radius: 8px;
-}
-
-h1 {
-  color: #245a81;
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; color: #222; }
+main { max-width: 1150px; margin: 30px auto; padding: 0 20px; }
+h1, h2 { color: #245a81; }
+h2 { margin-top: 0; font-size: 21px; }
+.panel { background: white; margin: 20px 0; padding: 24px; border: 1px solid #ddd; border-radius: 8px; }
+.barra, .acciones { display: flex; gap: 8px; flex-wrap: wrap; }
+.acciones { margin-top: 12px; }
+td .acciones { margin: 0; flex-wrap: nowrap; }
+.campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 16px; }
+input, select, textarea { display: block; width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #999; border-radius: 4px; font: inherit; font-weight: normal; }
+textarea { resize: vertical; }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+button { border: 1px solid transparent; border-radius: 4px; background: #245a81; color: white; padding: 9px 13px; font: inherit; cursor: pointer; }
+button:hover { filter: brightness(0.9); }
+button:disabled { opacity: 0.55; cursor: wait; }
+.secundario { background: #e9eef2; color: #222; border-color: #bdc9d2; }
+.peligro { background: #a32b2b; }
+.error, .exito { padding: 14px; border-radius: 4px; white-space: pre-line; }
+.error { background: #fde8e8; color: #8c1d1d; }
+.exito { background: #e1f2e5; color: #215b32; }
+.tabla { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+th, td { padding: 12px 10px; border-bottom: 1px solid #ddd; overflow-wrap: anywhere; }
+th { background: #eef3f7; }
+dt { font-weight: bold; margin-top: 12px; }
+dd { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  main { margin: 20px auto; padding: 0 12px; }
+  .panel { padding: 16px; }
+  .campos { grid-template-columns: 1fr; gap: 0; }
 }
